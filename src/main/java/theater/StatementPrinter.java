@@ -25,26 +25,22 @@ public class StatementPrinter {
 
     /**
      * Returns a formatted statement of the invoice associated with this printer.
+     *
      * @return the formatted statement
      * @throws RuntimeException if one of the play types is not known
      */
     public String statement() {
-        int totalAmount = 0;
-        int volumeCredits = 0;
         final StringBuilder result = new StringBuilder("Statement for " + invoice.getCustomer() + System.lineSeparator());
 
+        // 循环 1：只负责打印详情
         for (Performance p : invoice.getPerformances()) {
-
-            volumeCredits += getVolumeCredits(p);
-
-            // print line for this order
             result.append(String.format("  %s: %s (%s seats)%n", getPlay(p).getName(),
                     usd(getAmount(p)), p.getAudience()));
-
-            totalAmount += getAmount(p);
         }
-        result.append(String.format("Amount owed is %s%n", usd(totalAmount)));
-        result.append(String.format("You earned %s credits%n", volumeCredits));
+
+        // 计算总额和积分的逻辑已经移到了专门的方法里
+        result.append(String.format("Amount owed is %s%n", usd(getTotalAmount())));
+        result.append(String.format("You earned %s credits%n", getTotalVolumeCredits()));
         return result.toString();
     }
 
@@ -102,5 +98,31 @@ public class StatementPrinter {
      */
     private String usd(int amount) {
         return NumberFormat.getCurrencyInstance(Locale.US).format(amount / Constants.PERCENT_FACTOR);
+    }
+
+    /**
+     * Calculates the total amount for the invoice.
+     *
+     * @return the total amount
+     */
+    private int getTotalAmount() {
+        int result = 0;
+        for (Performance p : invoice.getPerformances()) {
+            result += getAmount(p);
+        }
+        return result;
+    }
+
+    /**
+     * Calculates the total volume credits for the invoice.
+     *
+     * @return the total volume credits
+     */
+    private int getTotalVolumeCredits() {
+        int result = 0;
+        for (Performance p : invoice.getPerformances()) {
+            result += getVolumeCredits(p);
+        }
+        return result;
     }
 }

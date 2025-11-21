@@ -1,3 +1,4 @@
+a4a9119 Task 2.3: Extracted usd method
 b78564f Task 2.2: Extracted getVolumeCredits method
 632b641 Task 2.1: Update git log
 e397806 Task 2.1: Extracted getAmount and getPlay methods
