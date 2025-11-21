@@ -1,3 +1,4 @@
+632b641 Task 2.1: Update git log
 e397806 Task 2.1: Extracted getAmount and getPlay methods
 fbb99fc Task 1.2: Added git log
 8edd8e5 Task 1.1: Fixed CheckStyle issues
