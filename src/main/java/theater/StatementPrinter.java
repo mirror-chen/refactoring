@@ -30,7 +30,8 @@ public class StatementPrinter {
      * @throws RuntimeException if one of the play types is not known
      */
     public String statement() {
-        final StringBuilder result = new StringBuilder("Statement for " + invoice.getCustomer() + System.lineSeparator());
+        final StringBuilder result =
+                new StringBuilder("Statement for " + invoice.getCustomer() + System.lineSeparator());
 
         // 循环 1：只负责打印详情
         for (Performance p : invoice.getPerformances()) {
