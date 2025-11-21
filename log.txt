@@ -1,3 +1,6 @@
+348c438 Task2.4newchange
+8467d58 finish
+f5b4e5f Task 2.4: Split loops and extracted total calculation methods
 a4a9119 Task 2.3: Extracted usd method
 b78564f Task 2.2: Extracted getVolumeCredits method
 632b641 Task 2.1: Update git log
